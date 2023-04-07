@@ -1,0 +1,18 @@
+Take-Home Assessment
+
+You are required to build a simple phone book web app using React.JS, where is has 2 pages only: 
+
+- One listing page with two columns to display a list of names and phone numbers. 
+
+- Another page with 2 textboxes to create a new name and phone number. 
+
+and create a backend API to store data into the database. 
+
+Kindly include the 'Delete' and 'Edit' functionalities into your web app. 
+
+You are required to use Python for the backend. 
+
+Please record a 1-minute video to demo how the phone book web app works and scroll through the code. 
+
+The duration for the assessment is 5 - 7 days (including working days).
+22th is first day

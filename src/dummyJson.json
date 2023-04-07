@@ -1,0 +1,22 @@
+[
+    {
+        "name" : "Bob",
+        "phoneNumber" : "9999 4444"
+    },
+    {
+        "name" : "Jeff",
+        "phoneNumber" : "9274 4127"
+    },
+    {
+        "name" : "Sky",
+        "phoneNumber" : "8376 3874"
+    },
+    {
+        "name" : "Peter Parker",
+        "phoneNumber" : "9382 1234"
+    },
+    {
+        "name" : "Mario",
+        "phoneNumber" : "8127 3758"
+    }
+]
