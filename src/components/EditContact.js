@@ -4,8 +4,6 @@ import API from '../service'
 
 function EditContact() {
 
-  // COME BACK AND DO SUBMIT EDIT CONTACT
-
    // Unpack from ListContact
    const { state: { contact } = {} } = useLocation();
   //  console.log(contact.id + contact.name + contact.phone_number);
@@ -55,11 +53,14 @@ function EditContact() {
         }
         
         console.log('Initiating PUT');
+
+        dummyJson.push(newContact);
+        console.log(dummyJson);
   
-        API.updateContact(contact.id, newContact)
-        .then(res => console.log(res))
-        .then(() => alert('Contact has been edited successfully'))
-        .catch(err => console.log())
+        // API.updateContact(contact.id, newContact)
+        // .then(res => console.log(res))
+        // .then(() => alert('Contact has been edited successfully'))
+        // .catch(err => console.log())
         
         console.log(newContact);
   
@@ -82,7 +83,7 @@ function EditContact() {
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
                   Phone Number
                 </label>
-                <input value={enteredPhoneNumber} onChange={phoneNumberChangeHandler} className={`${enteredPhoneNumberError && "border border-red-500"} shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500`} id="phoneNumber" type="number" placeholder="eg. 8733 3225" />
+                <input value={enteredPhoneNumber} onChange={phoneNumberChangeHandler} className={`${enteredPhoneNumberError && "border border-red-500"} shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500`} id="phoneNumber" type="number" placeholder="eg. 8999 9999" />
                 <div className='mt-3 text-red-500 text-sm'>{enteredPhoneNumberError}</div>
               </div>
               <div className="flex items-center justify-between">

@@ -13,21 +13,21 @@ import EditContact from './components/EditContact';
 
 function App() {
 
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(dummyJson);
 
-  useEffect(()=> {
-    fetch('http://127.0.0.1:8000/api/contacts/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    }).then(res => res.json())
-    .then(result => {
-      setContacts(result);
-      console.log('result = ' + JSON.stringify(result));
-    })
-    .catch(err => console.log(err))
-  }, [])
+  // useEffect(()=> {
+  //   fetch('http://127.0.0.1:8000/api/contacts/', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     }
+  //   }).then(res => res.json())
+  //   .then(result => {
+  //     setContacts(result);
+  //     console.log('result = ' + JSON.stringify(result));
+  //   })
+  //   .catch(err => console.log(err))
+  // }, [])
 
   return (
     <div>
