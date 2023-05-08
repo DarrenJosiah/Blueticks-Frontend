@@ -1,4 +1,4 @@
-# 😀 Welcome to [Blueticks](https://kanban-e5mn.onrender.com/) by Darren Chua
+# 😀 Welcome to [Blueticks](https://blueticks.onrender.com/) by Darren Chua
 
 This is a revamp Blueticks project from Fullstack to Frontend only to demonstrate React logic without Django.
 
