@@ -50,7 +50,7 @@ function ListContact( {contacts} ) {
                             {contact.name}
                           </th>
                           <td className="px-6 py-4">
-                            {contact.phone_number}
+                            {contact.phoneNumber}
                           </td>
                           
                             <td className="px-6 py-4">
