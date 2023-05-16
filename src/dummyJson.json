@@ -1,22 +1,22 @@
 [
     {
         "name" : "Bob",
-        "phoneNumber" : "9999 4444"
+        "phoneNumber" : "99994444"
     },
     {
         "name" : "Jeff",
-        "phoneNumber" : "9222 2222"
+        "phoneNumber" : "92222222"
     },
     {
         "name" : "Sky",
-        "phoneNumber" : "9333 3333"
+        "phoneNumber" : "93333333"
     },
     {
         "name" : "Peter Parker",
-        "phoneNumber" : "9111 1111"
+        "phoneNumber" : "91111111"
     },
     {
         "name" : "Mario",
-        "phoneNumber" : "9000 0000"
+        "phoneNumber" : "90000000"
     }
 ]

@@ -3,9 +3,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import EditContact from './EditContact'
 import API from '../service'
 
+// Firebase
+import { db } from '../firebase-config';
+import { deleteDoc, doc } from 'firebase/firestore';
+
 function ListContact( {contacts} ) {
   
+  console.log('contacts = ');
+  console.log(contacts);
+  
   const navigate = useNavigate()
+  
+  // Typial Firebase DELETE function
+  async function deleteContact(contactId) {
+    const userDoc = doc(db, 'contacts', contactId);
+    await deleteDoc(userDoc);
+  }
   
   const deleteHandler = contactId => {
     console.log(contactId);
@@ -13,11 +26,15 @@ function ListContact( {contacts} ) {
     let userInput = window.confirm('Confirm delete?');
     if(userInput) {
 
-      
-      API.deleteContact(contactId)
-       .then(() => alert('Contact has been deleted successfully'))
-       .then(() => navigate(0))
+      deleteContact(contactId)
+        .then(() => alert('Contact has been deleted successfully'))
+        .then(() => navigate(0))
         .catch(err => console.log())
+      
+      // const newDummyJson = contacts.splice(contactId, 1);
+      // console.log('newDummyJson= ' + JSON.stringify(newDummyJson));
+
+      // API.deleteContact(contactId)
     }
     
   }
@@ -43,7 +60,7 @@ function ListContact( {contacts} ) {
                     </tr>
                 </thead>
                 <tbody>
-                    {contacts && contacts?.map(contact => {
+                    {contacts && contacts?.map((contact) => {
                       return (
                         <tr key={contact.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                           <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">

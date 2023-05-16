@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
 import API from '../service'
 
-function AddContact() {
+// Firebase
+import { addDoc } from 'firebase/firestore';
+
+function AddContact( {usersCollectionRef} ) {
 
   const [enteredName, setEnteredName] = useState('')
   const [enteredPhoneNumber, setEnteredPhoneNumber] = useState('')
@@ -32,9 +35,13 @@ function AddContact() {
     return Object.keys(errors).length === 0 ? null : errors
   }
 
+  // Typial Firebase ADD function
+  async function createContact(newContactJson) {
+    await addDoc(usersCollectionRef, newContactJson)
+  }
+
   // On Click Submit
   function submitHandler (event) {
-
     setSuccessMsg('');
     setErrorMsg('');
 
@@ -49,13 +56,22 @@ function AddContact() {
 
       const newContactJson = {
         name: enteredName,
-        phone_number: enteredPhoneNumber
+        phoneNumber: enteredPhoneNumber
       }
       
+      console.log('Initiating POST');
       
-      // console.log(newContactJson);
-      // console.log('Initiating POST');
-
+      createContact(newContactJson)
+        .then((res) => res)
+        .then((res) => {
+          // console.log(res);
+          setSuccessMsg('Form has been submitted successfully')
+        })
+        .catch(err => {
+          console.log(err);
+          setErrorMsg('Error! Please try again!')
+        });
+      
       // addContact(newContactJson)
       // .then((res) => res)
       // .then((res) => {
@@ -67,26 +83,26 @@ function AddContact() {
       //   setErrorMsg('Error! Please try again!')
       // });
 
-    fetch(`http://127.0.0.1:8000/api/contacts/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify( newContactJson )
-      }).then(res => res.json())
-        .then((res) => {
-          console.log(res.phone_number[0]);
-          if (res.phone_number[0] === 'Ensure this value is less than or equal to 100000000.') {
-            console.log('yes');
-            setErrorMsg('Ensure this value is less than or equal to 100000000.');
-          } else {
-            setSuccessMsg('Form has been submitted successfully')
-          }
-        })
-        .catch(err => {
-          console.log(err)
-          // setErrorMsg('Error! Please try again!')
-        })
+    // fetch(`http://127.0.0.1:8000/api/contacts/`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify( newContactJson )
+    //   }).then(res => res.json())
+    //     .then((res) => {
+    //       console.log(res.phone_number[0]);
+    //       if (res.phone_number[0] === 'Ensure this value is less than or equal to 100000000.') {
+    //         console.log('yes');
+    //         setErrorMsg('Ensure this value is less than or equal to 100000000.');
+    //       } else {
+    //         setSuccessMsg('Form has been submitted successfully')
+    //       }
+    //     })
+    //     .catch(err => {
+    //       console.log(err)
+    //       // setErrorMsg('Error! Please try again!')
+    //     })
       
 
 
@@ -136,7 +152,7 @@ function AddContact() {
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
               Phone Number
             </label>
-            <input value={enteredPhoneNumber} onChange={phoneNumberChangeHandler} className={`${enteredPhoneNumberError && "border border-red-500"} shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500`} id="phoneNumber" type="number" placeholder="eg. 8733 3225" />
+            <input value={enteredPhoneNumber} onChange={phoneNumberChangeHandler} className={`${enteredPhoneNumberError && "border border-red-500"} shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500`} id="phoneNumber" type="number" placeholder="eg. 81234567" />
             <div className='mt-3 text-red-500 text-sm'>{enteredPhoneNumberError}</div>
           </div>
           <div className="flex items-center justify-between">
